@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickDeploy Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="images/logo.svg" alt="Logo">
+            </div>
+            <h1>QuickDeploy Demo</h1>
+        </header>
+        
+        <main>
+            <section class="intro">
+                <h2>Congratulations!</h2>
+                <p>Your QuickDeploy setup is working correctly. This is a simple static website that's been deployed through your local Kubernetes cluster.</p>
+            </section>
+            
+            <section class="details">
+                <h2>Deployment Details</h2>
+                <p>This website was deployed using your QuickDeploy system. The deployment process:</p>
+                <ol>
+                    <li>Cloned the repository from GitHub</li>
+                    <li>Built a Docker container</li>
+                    <li>Deployed it to Kubernetes</li>
+                    <li>Set up an Ingress route</li>
+                </ol>
+            </section>
+            
+            <section class="status">
+                <h2>System Status</h2>
+                <div id="status-indicator" class="status-good">All systems operational</div>
+                <p>Current time: <span id="current-time"></span></p>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Built with QuickDeploy - Your Local Vercel Alternative</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
