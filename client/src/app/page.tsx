@@ -15,7 +15,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'wewewewewew';
+  const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/tasks` || 'wewewewewew';
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -28,7 +28,7 @@ export default function Home() {
         console.log("Using API URL:", apiUrl);
         
         setIsLoading(true);
-        const response = await fetch(`${API_URL}/api/tasks`);
+        const response = await fetch(`${API_URL}`);
         console.log("Response status:", response.status); // Log the response status
         
         if (!response.ok) {
