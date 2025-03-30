@@ -21,7 +21,7 @@ export default function Home() {
     const fetchTasks = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_URL}/api/tasks`);
         if (!response.ok) {
           throw new Error('Failed to fetch tasks');
         }
