@@ -15,29 +15,28 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = 'http://127.0.0.1:5000/api/tasks';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  const fetchTasks = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(API_URL);
-      if (!response.ok) {
-        throw new Error('Failed to fetch tasks');
+    const fetchTasks = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error('Failed to fetch tasks');
+        }
+        const data = await response.json();
+        setTasks(data);
+        setError(null);
+      } catch (err) {
+        setError("Error fetching tasks. Is the backend running?");
+        console.error(err);
+      } finally {
+        setIsLoading(false);
       }
-      const data = await response.json();
-      setTasks(data);
-      setError(null);
-    } catch (err) {
-      setError("Error fetching tasks. Is the backend running?");
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+    fetchTasks();
+  }, [API_URL]);
 
   const addTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
