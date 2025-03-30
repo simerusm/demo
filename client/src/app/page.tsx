@@ -15,17 +15,29 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
+        console.log("Environment variables:");
+        console.log("NEXT_PUBLIC_API_URL:", process.env.NEXT_PUBLIC_API_URL);
+        console.log("All env:", process.env);
+        
+        const apiUrl = API_URL; // Using the API_URL from props or state
+        console.log("Using API URL:", apiUrl);
+        
         setIsLoading(true);
         const response = await fetch(`${API_URL}/api/tasks`);
+        console.log("Response status:", response.status); // Log the response status
+        
         if (!response.ok) {
           throw new Error('Failed to fetch tasks');
         }
+        
         const data = await response.json();
+        console.log("Data received:", data); // Log the received data
+        
         setTasks(data);
         setError(null);
       } catch (err) {
