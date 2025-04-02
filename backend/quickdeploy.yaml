@@ -1,5 +1,8 @@
 version: '1'
-
+services:
+  web:
+    type: flask
+    port: 5001
 databases:
   main:
     type: postgres
